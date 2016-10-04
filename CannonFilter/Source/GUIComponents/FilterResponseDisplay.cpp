@@ -1,12 +1,4 @@
-/*
-  ==============================================================================
 
-    FilterResponseDisplay.cpp
-    Created: 20 Jul 2015 3:22:56pm
-    Author:  Joshua Marler
-
-  ==============================================================================
-*/
 
 #include "FilterResponseDisplay.h"
 
@@ -68,7 +60,7 @@ void FilterResponseDisplay::paint(Graphics& g)
        Fill area under/inside path with same colour at a lower alpha / highlight value.
        Try setting magResponseColour.withAlpha value to different values to get a fill shade you like.
      */
-    g.setColour(magResponseColour.withAlpha((uint8) 0x9a));
+    g.setColour(magResponseColour.withAlpha((uint8) 0xff288fd3));
     g.fillPath(magnitudeResponsePath);
     
 }

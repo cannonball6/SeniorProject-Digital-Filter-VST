@@ -1,12 +1,4 @@
-/*
-  ==============================================================================
 
-    CustomAudioParameter.h
-    Created: 19 Jun 2015 7:27:04pm
-    Author:  Joshua Marler
-
-  ==============================================================================
-*/
 
 #ifndef CustomAudioParameter_H_INCLUDED
 #define CustomAudioParameter_H_INCLUDED

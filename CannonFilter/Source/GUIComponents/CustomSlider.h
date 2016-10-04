@@ -1,12 +1,4 @@
-/*
-  ==============================================================================
 
-    ParameterSlider.h
-    Created: 17 Feb 2016 9:58:49pm
-    Author:  Joshua Marler
-
-  ==============================================================================
-*/
 #include "../JuceLibraryCode/JuceHeader.h"
 
 #ifndef CUSTOMSLIDER_H_INCLUDED
@@ -37,4 +29,4 @@ private:
 
 
 
-#endif  // CUSTOMSLIDER_H_INCLUDED
+#endif  

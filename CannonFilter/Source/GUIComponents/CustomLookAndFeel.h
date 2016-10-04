@@ -1,12 +1,4 @@
-/*
-  ==============================================================================
 
-    CustomLookAndFeel.h
-    Created: 19 Sep 2014 7:23:32pm
-    Author:  Joshua Marler
-
-  ==============================================================================
-*/
 
 #ifndef CustomLookAndFeel_H_INCLUDED
 #define CustomLookAndFeel_H_INCLUDED

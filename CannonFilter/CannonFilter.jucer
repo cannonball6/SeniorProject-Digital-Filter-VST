@@ -2,41 +2,42 @@
 
 <JUCERPROJECT id="vvUqit" name="CannonFilter" projectType="audioplug" version="1.0.0"
               bundleIdentifier="com.yourcompany.CannonFilter" includeBinaryInAppConfig="1"
-              buildVST="1" buildVST3="0" buildAU="1" buildAUv3="0" buildRTAS="0"
+              buildVST="1" buildVST3="0" buildAU="0" buildAUv3="0" buildRTAS="0"
               buildAAX="0" pluginName="CannonFilter" pluginDesc="CannonFilter"
-              pluginManufacturer="yourcompany" pluginManufacturerCode="Manu"
-              pluginCode="Vvuq" pluginChannelConfigs="" pluginIsSynth="0" pluginWantsMidiIn="0"
+              pluginManufacturer="DasGood" pluginManufacturerCode="Manu" pluginCode="Vvuq"
+              pluginChannelConfigs="{2, 2}" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="CannonFilterAU" pluginRTASCategory="" aaxIdentifier="com.yourcompany.CannonFilter"
-              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.2.3">
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.2.4"
+              companyName="DasGood">
   <MAINGROUP id="nx2L7o" name="CannonFilter">
     <GROUP id="{C92DDBCB-CA52-231F-F308-6CCD951385CA}" name="Source">
       <GROUP id="{05FC85DB-75AC-7CA3-9D8B-4D27BD28BDA8}" name="AudioDSPComponents">
-        <FILE id="a2SpCM" name="AudioFilter.cpp" compile="1" resource="0" file="../../../../Downloads/filter-gui-demo/Source/AudioDSPComponents/AudioFilter.cpp"/>
-        <FILE id="jPbLk9" name="AudioFilter.h" compile="0" resource="0" file="../../../../Downloads/filter-gui-demo/Source/AudioDSPComponents/AudioFilter.h"/>
-        <FILE id="qPM1nl" name="VAOnePoleFilter.cpp" compile="1" resource="0"
-              file="../../../../Downloads/filter-gui-demo/Source/AudioDSPComponents/VAOnePoleFilter.cpp"/>
-        <FILE id="B6Slp4" name="VAOnePoleFilter.h" compile="0" resource="0"
-              file="../../../../Downloads/filter-gui-demo/Source/AudioDSPComponents/VAOnePoleFilter.h"/>
+        <FILE id="uxpTSe" name="AudioFilter.cpp" compile="1" resource="0" file="Source/AudioDSPComponents/AudioFilter.cpp"/>
+        <FILE id="ypMyTu" name="AudioFilter.h" compile="0" resource="0" file="Source/AudioDSPComponents/AudioFilter.h"/>
+        <FILE id="Uzj3bf" name="VAOnePoleFilter.cpp" compile="1" resource="0"
+              file="Source/AudioDSPComponents/VAOnePoleFilter.cpp"/>
+        <FILE id="iag65f" name="VAOnePoleFilter.h" compile="0" resource="0"
+              file="Source/AudioDSPComponents/VAOnePoleFilter.h"/>
       </GROUP>
       <GROUP id="{570A3463-287E-33A1-011F-C341AA082940}" name="GUIComponents">
-        <FILE id="wXPa63" name="CustomLookAndFeel.cpp" compile="1" resource="0"
-              file="../../../../Downloads/filter-gui-demo/Source/GUIComponents/CustomLookAndFeel.cpp"/>
-        <FILE id="pUwZFt" name="CustomLookAndFeel.h" compile="0" resource="0"
-              file="../../../../Downloads/filter-gui-demo/Source/GUIComponents/CustomLookAndFeel.h"/>
-        <FILE id="MbMMrL" name="CustomSlider.cpp" compile="1" resource="0"
-              file="../../../../Downloads/filter-gui-demo/Source/GUIComponents/CustomSlider.cpp"/>
-        <FILE id="SbIojP" name="CustomSlider.h" compile="0" resource="0" file="../../../../Downloads/filter-gui-demo/Source/GUIComponents/CustomSlider.h"/>
-        <FILE id="IYeXiR" name="FilterResponseDisplay.cpp" compile="1" resource="0"
-              file="../../../../Downloads/filter-gui-demo/Source/GUIComponents/FilterResponseDisplay.cpp"/>
-        <FILE id="wFqvip" name="FilterResponseDisplay.h" compile="0" resource="0"
-              file="../../../../Downloads/filter-gui-demo/Source/GUIComponents/FilterResponseDisplay.h"/>
+        <FILE id="XnPHax" name="CustomLookAndFeel.cpp" compile="1" resource="0"
+              file="Source/GUIComponents/CustomLookAndFeel.cpp"/>
+        <FILE id="hlbMLF" name="CustomLookAndFeel.h" compile="0" resource="0"
+              file="Source/GUIComponents/CustomLookAndFeel.h"/>
+        <FILE id="zdZqfc" name="CustomSlider.cpp" compile="1" resource="0"
+              file="Source/GUIComponents/CustomSlider.cpp"/>
+        <FILE id="u1RQjE" name="CustomSlider.h" compile="0" resource="0" file="Source/GUIComponents/CustomSlider.h"/>
+        <FILE id="PHjwJx" name="FilterResponseDisplay.cpp" compile="1" resource="0"
+              file="Source/GUIComponents/FilterResponseDisplay.cpp"/>
+        <FILE id="l4ta6f" name="FilterResponseDisplay.h" compile="0" resource="0"
+              file="Source/GUIComponents/FilterResponseDisplay.h"/>
       </GROUP>
       <GROUP id="{F989437E-9E82-B4E5-EB98-FA660CDCA0CA}" name="Parameters">
-        <FILE id="D72q0P" name="CustomAudioParameter.cpp" compile="1" resource="0"
-              file="/Volumes/Cannon Drive/Users/Cannon/Downloads/filter-gui-demo/Source/Parameters/CustomAudioParameter.cpp"/>
-        <FILE id="hcinnQ" name="CustomAudioParameter.h" compile="0" resource="0"
-              file="/Volumes/Cannon Drive/Users/Cannon/Downloads/filter-gui-demo/Source/Parameters/CustomAudioParameter.h"/>
+        <FILE id="Wezqou" name="CustomAudioParameter.cpp" compile="1" resource="0"
+              file="Source/Parameters/CustomAudioParameter.cpp"/>
+        <FILE id="hpO3cI" name="CustomAudioParameter.h" compile="0" resource="0"
+              file="Source/Parameters/CustomAudioParameter.h"/>
       </GROUP>
       <FILE id="CjE3x1" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
@@ -50,29 +51,31 @@
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="CannonFilter"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="CannonFilter"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="CannonFilter"
+                       osxSDK="default" osxCompatibility="10.10 SDK" osxArchitecture="32BitUniversal"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="CannonFilter"
+                       osxSDK="10.10 SDK" osxCompatibility="10.5 SDK" osxArchitecture="32BitUniversal"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_video" path="../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../../../JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>
   <MODULES>
-    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="1"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"/>
@@ -88,4 +91,7 @@
     <MODULE id="juce_video" showAllCode="1" useLocalCopy="0"/>
   </MODULES>
   <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
+  <LIVE_SETTINGS>
+    <OSX/>
+  </LIVE_SETTINGS>
 </JUCERPROJECT>

@@ -39,14 +39,43 @@ void VAOnePoleFilter::setCutoff(float newCutoff)
     
     //Cutoff prewarping, billinear transform filters - see Art Of VA Filter Design.
     float wd = 2 * M_PI * this->cutoffFrequency;
+    float wdL = wd;
+    float wdH = wd * 2;
     float T = 1/this->sampleRate;
     
-    /* Desired analogue frequency / these are virtual analogue filters so this is the cutoff / frequency response we require for out filter algorithm */
+    // Desired analogue frequency / these are virtual analogue filters so this is the cutoff / frequency response we require for out filter algorithm 
     float wa = (2/T) * tan(wd*T/2);
     float g = wa * T/2;
     G = g/(1.0 + g);
+    
+         //BPF and BSF
+    float waL = (2/T) * tan(wdL*T/2);
+    float waH = (2/T) * tan(wdH*T/2);
+    float w0 = (waL*waH) * (waL*waH);
+    float W = waH - waL;
 }
 
+
+/*void VAOnePoleFilter::setCutoff(float bandwidth, float upper)
+{
+    this->filterQ = bandwidth;
+    
+    //Cutoff prewarping, billinear transform filters - see Art Of VA Filter Design.
+    float wd = 2 * M_PI * this->filterQ;
+    float phi = 2 * M_PI * upper;
+    float T = 1/this->sampleRate;
+    
+    //Desired analogue frequency / these are virtual analogue filters so this is the cutoff / frequency response we require for out filter algorithm
+    float wa = (2/T) * tan(wd*T/2);
+    float g = wa * T/2;
+    G = g/(1.0 + g);
+    
+       //BPF and BSF 
+    float waL = (2/T) * tan(wdL*T/2);
+    float waH = (2/T) * tan(wdH*T/2);
+    float w0 = (waL*waH) * (waL*waH);
+    float W = waH - waL;
+}*/
 
 float VAOnePoleFilter::processFilter(float input, int channel)
 {
@@ -69,7 +98,6 @@ float VAOnePoleFilter::processFilter(float input, int channel)
         default:
             break;
     }
-    
     return output;
 }
 

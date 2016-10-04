@@ -1,12 +1,3 @@
-/*
-  ==============================================================================
-
-    FilterResponseDisplay.h
-    Created: 20 Jul 2015 3:22:56pm
-    Author:  Joshua Marler
-
-  ==============================================================================
-*/
 
 #ifndef FILTERRESPONSEDISPLAY_H_INCLUDED
 #define FILTERRESPONSEDISPLAY_H_INCLUDED

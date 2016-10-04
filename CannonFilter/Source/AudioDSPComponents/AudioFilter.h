@@ -1,12 +1,4 @@
-/*
-  ==============================================================================
 
-    AudioFilter.h
-    Created: 25 Jul 2015 10:05:58am
-    Author:  Joshua Marler
-
-  ==============================================================================
-*/
 
 #ifndef AUDIOFILTER_H_INCLUDED
 #define AUDIOFILTER_H_INCLUDED
@@ -67,7 +59,9 @@ public:
     enum filterTypeList
     {
         LowPass = 0,
-        HighPass
+        HighPass,
+        BandPass,
+        BandStop
     };
     
 protected:
@@ -78,6 +72,7 @@ protected:
     
     //Wrap these as std::atomic ? What if they are updated by lfo etc and the gui thread also reads them in some way through magnitudeResponse call etc.
     float cutoffFrequency = 0.0;
+    float filterQ = 0.0;
     float filterGain = 1.0;
     float qFactor = 0.0;
     

@@ -1,12 +1,4 @@
-/*
-  ==============================================================================
 
-    VAOnePoleFilter.h
-    Created: 9 Jul 2015 8:20:19pm
-    Author:  Joshua Marler
-
-  ==============================================================================
-*/
 
 #ifndef VAONEPOLEFILTER_H_INCLUDED
 #define VAONEPOLEFILTER_H_INCLUDED
@@ -23,7 +15,6 @@
    there is lost energy/gain which will be apparent on the filters response display (common issue with VA filters). You
    will notice the frequency response suddenly drops off as the cutoff approaches nyquist.
    This will be addressed in the next version.
- 
 */
 
 class VAOnePoleFilter : public AudioFilter
@@ -49,7 +40,7 @@ private:
     // stereo input between filter and plugin processor code but this is nice and simple.
     float z1 [2];
     
-    // Big G value for billinear cutoff/pre-warping
+    // Big G value for bilinear cutoff/pre-warping
     float G = 0.0;
 };
 
