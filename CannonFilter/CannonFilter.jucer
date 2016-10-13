@@ -52,9 +52,9 @@
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="CannonFilter"
-                       osxSDK="default" osxCompatibility="10.10 SDK" osxArchitecture="32BitUniversal"/>
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="64BitIntel"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="CannonFilter"
-                       osxSDK="10.10 SDK" osxCompatibility="10.5 SDK" osxArchitecture="32BitUniversal"/>
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="64BitIntel"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../../../../JUCE/modules"/>

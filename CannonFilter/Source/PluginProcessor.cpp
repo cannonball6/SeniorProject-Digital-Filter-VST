@@ -18,9 +18,11 @@ CannonFilterAudioProcessor::CannonFilterAudioProcessor() : filter1(new VAOnePole
      this is safe.*/
     auto cutoffParamCallback = [this] (float newCutoff){this->filter1->setCutoff(newCutoff);};
     filterCutoffParam = new CustomAudioParameter("FilterCutoff", "FilterCutoff", false, cutoffParamCallback);
-    
     //This param represents a filters cutoff frequency so appending Hz string to label for display purposes.
     filterCutoffParam->setLabel("Hz");
+    
+    //auto qFactorParamCallback = [this] (int newQFactor){this->filter1->setQFactor(newQFactor);};
+    //filterQParam = new CustomAudioParameter("Q", "Q", true, qFactorParamCallback);
     
     /*
         The filters min and max frequency will be used as normalized range values and values in this range will be passed to the set value
@@ -33,6 +35,7 @@ CannonFilterAudioProcessor::CannonFilterAudioProcessor() : filter1(new VAOnePole
     
     addParameter(filterCutoffParam);
     addParameter(filterGainParam);
+    //addParameter(filterQParam);
 }
 
 CannonFilterAudioProcessor::~CannonFilterAudioProcessor()

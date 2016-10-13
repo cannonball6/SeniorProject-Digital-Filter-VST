@@ -2895,7 +2895,7 @@
 		8150AA295A887481522A3768 = {isa = XCBuildConfiguration; buildSettings = {  }; name = Debug; };
 		C4FB694B4A8993BDE6A62043 = {isa = XCBuildConfiguration; buildSettings = {  }; name = Release; };
 		BE6BC526EDD29EFE9C366690 = {isa = XCBuildConfiguration; buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2924,14 +2924,14 @@
 				INFOPLIST_FILE = Info-VST.plist;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/VST/";
 				LIBRARY_STYLE = Bundle;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = "-bundle -lCannonFilter";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.CannonFilter;
 				SDKROOT_ppc = macosx10.5;
 				WRAPPER_EXTENSION = vst; }; name = Debug; };
 		EE11EF908D7B7BD56663E9E5 = {isa = XCBuildConfiguration; buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2961,15 +2961,14 @@
 				INFOPLIST_FILE = Info-VST.plist;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/VST/";
 				LIBRARY_STYLE = Bundle;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = "-bundle -lCannonFilter";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.CannonFilter;
-				SDKROOT = macosx10.10;
 				SDKROOT_ppc = macosx10.5;
 				WRAPPER_EXTENSION = vst; }; name = Release; };
 		9F71C26BFCE3018D01E7B7A6 = {isa = XCBuildConfiguration; buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2994,12 +2993,12 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = ("../../JuceLibraryCode", "../../JuceLibraryCode/modules", "../../../../../../../JUCE/modules", "$(inherited)");
 				INSTALL_PATH = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.CannonFilter;
 				SDKROOT_ppc = macosx10.5; }; name = Debug; };
 		EF8FE8966CD8E5BD474A49F5 = {isa = XCBuildConfiguration; buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -3025,10 +3024,9 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = ("../../JuceLibraryCode", "../../JuceLibraryCode/modules", "../../../../../../../JUCE/modules", "$(inherited)");
 				INSTALL_PATH = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.CannonFilter;
-				SDKROOT = macosx10.10;
 				SDKROOT_ppc = macosx10.5; }; name = Release; };
 		67AB0C0DAAC7BCF61251F3D9 = {isa = XCBuildConfiguration; buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
