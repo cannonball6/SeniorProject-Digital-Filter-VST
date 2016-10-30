@@ -78,14 +78,14 @@ CannonFilterAudioProcessorEditor::CannonFilterAudioProcessorEditor (CannonFilter
     addAndMakeVisible(filterTypeDropDown);
     filterTypeDropDown.addItem("LowPass", 1);
     filterTypeDropDown.addItem("HighPass", 2);
-    //filterTypeDropDown.addItem("BandPass", 3);
-    //filterTypeDropDown.addItem("BandStop", 4);
-    filterTypeDropDown.addItem("Select Filter", 3);
+    filterTypeDropDown.addItem("Biquad LP", 3);
+    filterTypeDropDown.addItem("Biquad HP", 4);
+    filterTypeDropDown.addItem("Select Filter", 5);
     filterTypeDropDown.setColour(ComboBox::outlineColourId, Colours::gold);
     filterTypeDropDown.setColour(ComboBox::backgroundColourId, Colours::dimgrey);
     filterTypeDropDown.setColour(ComboBox::textColourId, Colours::gold);
     filterTypeDropDown.setColour(ComboBox::buttonColourId, Colours::goldenrod);
-    filterTypeDropDown.setSelectedId(3);
+    filterTypeDropDown.setSelectedId(5);
     filterTypeDropDown.addListener(this);
     
     addAndMakeVisible(filterResponseDisplay);

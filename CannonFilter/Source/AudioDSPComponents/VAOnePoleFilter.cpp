@@ -37,14 +37,14 @@ void VAOnePoleFilter::setCutoff(float newCutoff)
 {
     this->cutoffFrequency = newCutoff;
     
-    //Cutoff prewarping, billinear transform filters - see Art Of VA Filter Design.
+    //Cutoff prewarping, billinear transform filters
     float wd = 2 * M_PI * this->cutoffFrequency;
     float T = 1/this->sampleRate;
     
-    // Desired analogue frequency / these are virtual analogue filters so this is the cutoff / frequency response we require for out filter algorithm 
+    // Desired analogue frequency / these are virtual analogue filters so this is the cutoff / frequency response we require for our filter algorithm 
     float wa = (2/T) * tan(wd*T/2); //analog frequency response function
-    float g = wa * T/2; //output gain
-    G = g/(1.0 + g); 
+    float g = wa * T/2; //output gain, cutoff
+    G = g/(1.0 + g); //freq response
 }
 
 

@@ -12,7 +12,8 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-CannonFilterAudioProcessor::CannonFilterAudioProcessor() : filter1(new VAOnePoleFilter())
+CannonFilterAudioProcessor::CannonFilterAudioProcessor() : filter1(new BiquadFilter())
+                                                          
 {
     /* The lambda is capturing a value copy of the this pointer to the audio processor. The processor will be destroyed after the parameter object so
      this is safe.*/

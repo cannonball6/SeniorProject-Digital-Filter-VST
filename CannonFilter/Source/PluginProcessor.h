@@ -13,6 +13,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "AudioDSPComponents/VAOnePoleFilter.h"
+#include "AudioDSPComponents/BiquadFilter.h"
 #include "Parameters/CustomAudioParameter.h"
 
 
@@ -72,6 +73,7 @@ private:
   
     
     std::unique_ptr<AudioFilter> filter1;
+    std::unique_ptr<AudioFilter> filter2;
     
     //CustomAudioParameter* filterCutoffParam;
     //CustomAudioParameter* filterGainParam;

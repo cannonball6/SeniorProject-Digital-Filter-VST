@@ -15,6 +15,9 @@
       <GROUP id="{05FC85DB-75AC-7CA3-9D8B-4D27BD28BDA8}" name="AudioDSPComponents">
         <FILE id="uxpTSe" name="AudioFilter.cpp" compile="1" resource="0" file="Source/AudioDSPComponents/AudioFilter.cpp"/>
         <FILE id="ypMyTu" name="AudioFilter.h" compile="0" resource="0" file="Source/AudioDSPComponents/AudioFilter.h"/>
+        <FILE id="ye0DnZ" name="BiquadFilter.cpp" compile="1" resource="0"
+              file="Source/AudioDSPComponents/BiquadFilter.cpp"/>
+        <FILE id="cWMil6" name="BiquadFilter.h" compile="0" resource="0" file="Source/AudioDSPComponents/BiquadFilter.h"/>
         <FILE id="Uzj3bf" name="VAOnePoleFilter.cpp" compile="1" resource="0"
               file="Source/AudioDSPComponents/VAOnePoleFilter.cpp"/>
         <FILE id="iag65f" name="VAOnePoleFilter.h" compile="0" resource="0"
