@@ -63,7 +63,7 @@ CannonFilterAudioProcessorEditor::CannonFilterAudioProcessorEditor (CannonFilter
     //Gain Label
     addAndMakeVisible(filterGainLabel);
     filterGainLabel.setText("Output Gain", juce::NotificationType::dontSendNotification);
-    filterGainLabel.setFont(Font ("Ayuthaya", 22.50f, Font::plain));
+    filterGainLabel.setFont(Font ("Ayuthaya", 20.50f, Font::plain));
     filterGainLabel.setColour(Label::textColourId, Colours::lightblue);
     
     //Q Label

@@ -43,7 +43,7 @@ void VAOnePoleFilter::setCutoff(float newCutoff)
     
     // Desired analogue frequency / these are virtual analogue filters so this is the cutoff / frequency response we require for out filter algorithm 
     float wa = (2/T) * tan(wd*T/2); //analog frequency response function
-    float g = wa * T/2; //freq response function
+    float g = wa * T/2; //output gain
     G = g/(1.0 + g); 
 }
 
