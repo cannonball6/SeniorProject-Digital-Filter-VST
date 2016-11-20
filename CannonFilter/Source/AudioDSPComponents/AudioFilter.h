@@ -4,6 +4,7 @@
 #define AUDIOFILTER_H_INCLUDED
 
 #include "JuceHeader.h"
+#include "filt.h"
 
 //Abstract audio filter base class
 class AudioFilter
@@ -60,14 +61,14 @@ public:
     {
         LowPass = 0,
         HighPass,
-        BandPass,
-        BandStop,
         bqLowPass,
-        bqHighPass
+        bqHighPass,
+        bqBandPass
     };
     
 protected:
     
+    double pi = 3.1415926535897932384626433832795028841971;
     float sampleRate = 0.0;
     float minFrequency = 0.0;
     float maxFrequency = 0.0;

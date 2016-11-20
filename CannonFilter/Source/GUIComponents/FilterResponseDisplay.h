@@ -25,6 +25,9 @@ public:
     //Filter response type drawing functions
     void drawLowpass();
     void drawHighpass();
+    void drawBqLowpass();
+    void drawBqHighpass();
+    void drawBqBandPass();
     
     /*
         Setup as a slider listener so that filter display can be updated/call it's paint method when the relevant

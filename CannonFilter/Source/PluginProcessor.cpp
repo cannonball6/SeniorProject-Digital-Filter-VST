@@ -12,7 +12,7 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-CannonFilterAudioProcessor::CannonFilterAudioProcessor() : filter1(new BiquadFilter())
+CannonFilterAudioProcessor::CannonFilterAudioProcessor() : filter1(new MyFilters())
                                                           
 {
     /* The lambda is capturing a value copy of the this pointer to the audio processor. The processor will be destroyed after the parameter object so
@@ -22,9 +22,6 @@ CannonFilterAudioProcessor::CannonFilterAudioProcessor() : filter1(new BiquadFil
     //This param represents a filters cutoff frequency so appending Hz string to label for display purposes.
     filterCutoffParam->setLabel("Hz");
     
-    //auto qFactorParamCallback = [this] (int newQFactor){this->filter1->setQFactor(newQFactor);};
-    //filterQParam = new CustomAudioParameter("Q", "Q", true, qFactorParamCallback);
-    
     /*
         The filters min and max frequency will be used as normalized range values and values in this range will be passed to the set value
         callback function.
@@ -33,10 +30,13 @@ CannonFilterAudioProcessor::CannonFilterAudioProcessor() : filter1(new BiquadFil
    
     auto gainParamCallback = [this] (float gain) {this->filter1->setGain(gain);};
     filterGainParam = new CustomAudioParameter("FilterGain", "FilterGain", true, gainParamCallback);
+
+    auto qParamCallback = [this] (float newQFactor) {this->filter1->setQFactor(newQFactor);};
+    filterQParam = new CustomAudioParameter("FilterQ", "FilterQ", true, qParamCallback);
     
     addParameter(filterCutoffParam);
     addParameter(filterGainParam);
-    //addParameter(filterQParam);
+    addParameter(filterQParam);
 }
 
 CannonFilterAudioProcessor::~CannonFilterAudioProcessor()
@@ -143,10 +143,12 @@ void CannonFilterAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBu
         const float* input = buffer.getReadPointer(channel);
         float* output = buffer.getWritePointer (channel);
         
-        for (int i = 0; i < numSamples; i++)
-        {
-            output[i] = filter1->processFilter(input[i], channel);
-        }
+        
+            for (int i = 0; i < numSamples; i++)
+            {
+                output[i] = filter1->processFilter(input[i], channel);
+            
+            }
     }
 }
 

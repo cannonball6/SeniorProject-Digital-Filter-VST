@@ -48,6 +48,15 @@ void FilterResponseDisplay::paint(Graphics& g)
         case AudioFilter::filterTypeList::HighPass:
             drawHighpass();
             break;
+        case AudioFilter::filterTypeList::bqLowPass:
+            drawBqLowpass();
+            break;
+        case AudioFilter::filterTypeList::bqHighPass:
+            drawBqHighpass();
+            break;
+        case AudioFilter::filterTypeList::bqBandPass:
+            drawBqBandPass();
+            break;
     }
 
     //Close the response path drawn
@@ -96,7 +105,7 @@ void FilterResponseDisplay::drawLowpass()
         oversampled when cutoff is close to nyquist as the response is pulled to zero). Try commenting this line out and running the plugin at
         higher sample rate i.e 96khz to see the visual result of the path closing without this.
      */
-    magnitudeResponsePath.lineTo(((float) getWidth() + (filterPathThickness/2)), (getBottom() - (filterPathThickness/2)));
+    //magnitudeResponsePath.lineTo(((float) getWidth() + (filterPathThickness/2)), (getBottom() - (filterPathThickness/2)));
     
 }
 
@@ -128,6 +137,107 @@ void FilterResponseDisplay::drawHighpass()
      */
     magnitudeResponsePath.lineTo ((0.0f - (filterPathThickness/2)), (getBottom() - (filterPathThickness/2)));
 }
+
+//Draw BiquadLP
+void FilterResponseDisplay::drawBqLowpass()
+{
+    float freq = 0.0;
+    float magnitudeDBValue = 0.0;
+    
+    /*
+     LowPass so start path on left hand side of component i.e at 0.0f - using 0.0f - (filterPathThickness/2) for asthetic purposes
+     Try commeting out - (filterPathThickness/2) to see the effect. This line hides the highlighted path edge so that the path edge
+     highlight shows only on the top of the magnitude response path.
+     */
+    magnitudeResponsePath.startNewSubPath((0.0f - (filterPathThickness/2)), (getBottom() - (filterPathThickness/2)));
+    magnitudeDBValue = filterToUse->getMagnitudeResponse(minFrequency);
+    magnitudeResponsePath.lineTo((0.0f - (filterPathThickness/2)) , dbToYAxis(magnitudeDBValue));
+    
+    for (float xPos = 0.0; xPos < ((float) getWidth() + (filterPathThickness/2)); xPos += (filterPathThickness/2))
+    {
+        //Get the frequency value for the filter's magnitude response calculation
+        freq = xAxisToFrequency(xPos);
+        magnitudeDBValue = filterToUse->getMagnitudeResponse(freq);
+        magnitudeResponsePath.lineTo(xPos, dbToYAxis(magnitudeDBValue));
+    }
+    
+    magnitudeDBValue = filterToUse->getMagnitudeResponse(maxFrequency);
+    magnitudeResponsePath.lineTo(((float) getWidth() + (filterPathThickness/2)), dbToYAxis(magnitudeDBValue));
+    
+    /*
+     Dirty Trick to close the path nicely when cutoff is at max level (this is not apparent for virtual analogue filters that have not been
+     oversampled when cutoff is close to nyquist as the response is pulled to zero). Try commenting this line out and running the plugin at
+     higher sample rate i.e 96khz to see the visual result of the path closing without this.
+     */
+    magnitudeResponsePath.lineTo(((float) getWidth() + (filterPathThickness/2)), (getBottom() - (filterPathThickness/2)));
+    
+}
+
+//Draws filter display path for Highpass response
+void FilterResponseDisplay::drawBqHighpass()
+{
+    float freq = 0.0;
+    float magnitudeDBValue = 0.0;
+    
+    //If HighPass start path on right hand side of component i.e at component width.
+    magnitudeDBValue = filterToUse->getMagnitudeResponse(maxFrequency);
+    magnitudeResponsePath.startNewSubPath(((float) getWidth() + (filterPathThickness/2)), (getBottom() - (filterPathThickness/2)));
+    magnitudeResponsePath.lineTo(((float) getWidth() + (filterPathThickness/2)), dbToYAxis(magnitudeDBValue));
+    
+    for (float xPos = ((float) getWidth()); xPos > (filterPathThickness/2); xPos -= (filterPathThickness/2))
+    {
+        //Get the frequency value for the filter's magnitude response calculation
+        freq = xAxisToFrequency(xPos);
+        magnitudeDBValue = filterToUse->getMagnitudeResponse(freq);
+        magnitudeResponsePath.lineTo(xPos, dbToYAxis(magnitudeDBValue));
+    }
+    
+    magnitudeDBValue = filterToUse->getMagnitudeResponse(minFrequency);
+    magnitudeResponsePath.lineTo ((0.0f - (filterPathThickness/2)), dbToYAxis(magnitudeDBValue));
+    
+    /*
+     Dirty trick again to close the path nicely when cutoff at min level for High Pass - try cmmenting this line out to se the visual
+     effect on the reponse path closing without it
+     */
+    magnitudeResponsePath.lineTo ((0.0f - (filterPathThickness/2)), (getBottom() - (filterPathThickness/2)));
+}
+
+void FilterResponseDisplay::drawBqBandPass()
+{
+    float freq = 0.0;
+    float magnitudeDBValue = 0.0;
+    
+    /*
+     LowPass so start path on left hand side of component i.e at 0.0f - using 0.0f - (filterPathThickness/2) for asthetic purposes
+     Try commeting out - (filterPathThickness/2) to see the effect. This line hides the highlighted path edge so that the path edge
+     highlight shows only on the top of the magnitude response path.
+     */
+    magnitudeResponsePath.startNewSubPath((0.0f - (filterPathThickness/2)), (getBottom() - (filterPathThickness/2)));
+    magnitudeDBValue = filterToUse->getMagnitudeResponse(minFrequency);
+    magnitudeResponsePath.lineTo((0.0f - (filterPathThickness/2)) , dbToYAxis(magnitudeDBValue));
+    
+    for (float xPos = 0.0; xPos < ((float) getWidth() + (filterPathThickness/2)); xPos += (filterPathThickness/2))
+    {
+        //Get the frequency value for the filter's magnitude response calculation
+        freq = xAxisToFrequency(xPos);
+        magnitudeDBValue = filterToUse->getMagnitudeResponse(freq);
+        magnitudeResponsePath.lineTo(xPos, dbToYAxis(magnitudeDBValue));
+    }
+    
+    magnitudeDBValue = filterToUse->getMagnitudeResponse(maxFrequency);
+    magnitudeResponsePath.lineTo(((float) getWidth() + (filterPathThickness/2)), dbToYAxis(magnitudeDBValue));
+    
+    /*
+     Dirty Trick to close the path nicely when cutoff is at max level (this is not apparent for virtual analogue filters that have not been
+     oversampled when cutoff is close to nyquist as the response is pulled to zero). Try commenting this line out and running the plugin at
+     higher sample rate i.e 96khz to see the visual result of the path closing without this.
+     */
+    
+    magnitudeResponsePath.lineTo(((float) getWidth() + (filterPathThickness/2)), (getBottom() - (filterPathThickness/2)));
+        magnitudeResponsePath.lineTo ((0.0f - (filterPathThickness/2)), (getBottom() - (filterPathThickness/2)));
+    
+}
+
 
 
 void FilterResponseDisplay::setMagResponseColour(Colour newColour)

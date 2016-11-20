@@ -12,7 +12,7 @@
 
 AudioFilter::AudioFilter()
 {
-    filterType = LowPass;
+    //filterType = LowPass;
 }
 
 AudioFilter::~AudioFilter()

@@ -46,9 +46,9 @@ private:
     //GUI Components
     CustomLookAndFeel customLookAndFeel;
     FilterResponseDisplay filterResponseDisplay;
-    std::unique_ptr<CustomSlider> frequencyCutoffSlider, filterGainSlider;
+    std::unique_ptr<CustomSlider> frequencyCutoffSlider, filterGainSlider, filterQSlider;
     ComboBox filterTypeDropDown;
-    Label filterCutoffLabel, filterGainLabel;
+    Label filterCutoffLabel, filterGainLabel, filterQLabel;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CannonFilterAudioProcessorEditor)
 };

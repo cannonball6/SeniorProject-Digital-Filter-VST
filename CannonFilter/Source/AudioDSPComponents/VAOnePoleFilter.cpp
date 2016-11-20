@@ -12,12 +12,10 @@
 
 VAOnePoleFilter::VAOnePoleFilter()
 {
-    
 }
 
 VAOnePoleFilter::~VAOnePoleFilter()
 {
-
 }
 
 //Set variables and flush state registers in initialization function. Must be called before playback starts
