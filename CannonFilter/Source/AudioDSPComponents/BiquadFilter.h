@@ -13,7 +13,7 @@
 
 #include "JuceHeader.h"
 #include "AudioFilter.h"
-#include "BiQuad.h"
+
 
 
 class BiquadFilter : public AudioFilter

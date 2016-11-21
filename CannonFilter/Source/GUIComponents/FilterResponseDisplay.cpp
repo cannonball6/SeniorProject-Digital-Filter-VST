@@ -105,7 +105,7 @@ void FilterResponseDisplay::drawLowpass()
         oversampled when cutoff is close to nyquist as the response is pulled to zero). Try commenting this line out and running the plugin at
         higher sample rate i.e 96khz to see the visual result of the path closing without this.
      */
-    //magnitudeResponsePath.lineTo(((float) getWidth() + (filterPathThickness/2)), (getBottom() - (filterPathThickness/2)));
+    magnitudeResponsePath.lineTo(((float) getWidth() + (filterPathThickness/2)), (getBottom() - (filterPathThickness/2)));
     
 }
 
@@ -214,7 +214,7 @@ void FilterResponseDisplay::drawBqBandPass()
      */
     magnitudeResponsePath.startNewSubPath((0.0f - (filterPathThickness/2)), (getBottom() - (filterPathThickness/2)));
     magnitudeDBValue = filterToUse->getMagnitudeResponse(minFrequency);
-    magnitudeResponsePath.lineTo((0.0f - (filterPathThickness/2)) , dbToYAxis(magnitudeDBValue));
+    magnitudeResponsePath.lineTo((0.0f  - (filterPathThickness/2)) , dbToYAxis(magnitudeDBValue));
     
     for (float xPos = 0.0; xPos < ((float) getWidth() + (filterPathThickness/2)); xPos += (filterPathThickness/2))
     {
@@ -226,18 +226,7 @@ void FilterResponseDisplay::drawBqBandPass()
     
     magnitudeDBValue = filterToUse->getMagnitudeResponse(maxFrequency);
     magnitudeResponsePath.lineTo(((float) getWidth() + (filterPathThickness/2)), dbToYAxis(magnitudeDBValue));
-    
-    /*
-     Dirty Trick to close the path nicely when cutoff is at max level (this is not apparent for virtual analogue filters that have not been
-     oversampled when cutoff is close to nyquist as the response is pulled to zero). Try commenting this line out and running the plugin at
-     higher sample rate i.e 96khz to see the visual result of the path closing without this.
-     */
-    
-    magnitudeResponsePath.lineTo(((float) getWidth() + (filterPathThickness/2)), (getBottom() - (filterPathThickness/2)));
-        magnitudeResponsePath.lineTo ((0.0f - (filterPathThickness/2)), (getBottom() - (filterPathThickness/2)));
-    
 }
-
 
 
 void FilterResponseDisplay::setMagResponseColour(Colour newColour)

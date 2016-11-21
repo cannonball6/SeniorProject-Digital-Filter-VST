@@ -12,29 +12,11 @@
               companyName="DasGood">
   <MAINGROUP id="nx2L7o" name="CannonFilter">
     <GROUP id="{C92DDBCB-CA52-231F-F308-6CCD951385CA}" name="Source">
-      <GROUP id="{7963F745-DEB8-2257-77CB-D0C8B91AF23E}" name="FilterCompenents2">
-        <FILE id="I4yFq9" name="BiQuad.cpp" compile="1" resource="0" file="Source/FilterComponents2/BiQuad.cpp"/>
-        <FILE id="QhQFpB" name="BiQuad.h" compile="0" resource="0" file="Source/FilterComponents2/BiQuad.h"/>
-        <FILE id="jd5B2H" name="Filter.h" compile="0" resource="0" file="Source/FilterComponents2/Filter.h"/>
-        <FILE id="Cl4rAu" name="Stk.cpp" compile="1" resource="0" file="Source/FilterComponents2/Stk.cpp"/>
-        <FILE id="SPkkM5" name="Stk.h" compile="0" resource="0" file="Source/FilterComponents2/Stk.h"/>
-      </GROUP>
-      <GROUP id="{FF63D98A-4977-C25F-1D24-1F2A7746376F}" name="FilterComponents1">
-        <FILE id="eQrUZk" name="filt.cpp" compile="1" resource="0" file="Source/filt.cpp"/>
-        <FILE id="szENc1" name="filt.h" compile="0" resource="0" file="Source/filt.h"/>
-      </GROUP>
       <GROUP id="{05FC85DB-75AC-7CA3-9D8B-4D27BD28BDA8}" name="AudioDSPComponents">
         <FILE id="uxpTSe" name="AudioFilter.cpp" compile="1" resource="0" file="Source/AudioDSPComponents/AudioFilter.cpp"/>
         <FILE id="ypMyTu" name="AudioFilter.h" compile="0" resource="0" file="Source/AudioDSPComponents/AudioFilter.h"/>
-        <FILE id="ye0DnZ" name="BiquadFilter.cpp" compile="1" resource="0"
-              file="Source/AudioDSPComponents/BiquadFilter.cpp"/>
-        <FILE id="cWMil6" name="BiquadFilter.h" compile="0" resource="0" file="Source/AudioDSPComponents/BiquadFilter.h"/>
         <FILE id="E0sxEg" name="MyFilters.cpp" compile="1" resource="0" file="Source/AudioDSPComponents/MyFilters.cpp"/>
         <FILE id="iGSks7" name="MyFilters.h" compile="0" resource="0" file="Source/AudioDSPComponents/MyFilters.h"/>
-        <FILE id="Uzj3bf" name="VAOnePoleFilter.cpp" compile="1" resource="0"
-              file="Source/AudioDSPComponents/VAOnePoleFilter.cpp"/>
-        <FILE id="iag65f" name="VAOnePoleFilter.h" compile="0" resource="0"
-              file="Source/AudioDSPComponents/VAOnePoleFilter.h"/>
       </GROUP>
       <GROUP id="{570A3463-287E-33A1-011F-C341AA082940}" name="GUIComponents">
         <FILE id="XnPHax" name="CustomLookAndFeel.cpp" compile="1" resource="0"

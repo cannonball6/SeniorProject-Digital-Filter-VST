@@ -24,7 +24,7 @@ void MyFilters::initializeFilter(float initSampleRate, float initMinFrequency, f
     this->sampleRate = initSampleRate;
     this->minFrequency = initMinFrequency;
     this->maxFrequency = initMaxFrequency;
-    this->qFactor = .7071;
+    //this->qFactor = .7071;
     //clear the delay elements/state holders
     z1[0] = 0.0;
     z1[1] = 0.0;
@@ -68,20 +68,20 @@ void MyFilters::calcCoeff(){
             b2 = (1 - K / this->qFactor + K * K) * norm;
             break;
         case AudioFilter::filterTypeList::bqHighPass:
-            norm = 1 / (1 + K / Q + K * K);
+            norm = 1 / (1 + K / this->qFactor + K * K);
             a0 = 1 * norm;
             a1 = -2 * a0;
             a2 = a0;
             b1 = 2 * (K * K - 1) * norm;
-            b2 = (1 - K / Q + K * K) * norm;
+            b2 = (1 - K / this->qFactor + K * K) * norm;
             break;
         case AudioFilter::filterTypeList::bqBandPass:
-            norm = 1 / (1 + K / Q + K * K);
-            a0 = K / Q * norm;
+            norm = 1 / (1 + K / this->qFactor + K * K);
+            a0 = K / this->qFactor * norm;
             a1 = 0;
             a2 = -a0;
             b1 = 2 * (K * K - 1) * norm;
-            b2 = (1 - K / Q + K * K) * norm;
+            b2 = (1 - K / this->qFactor + K * K) * norm;
             break;
         default:
             break;
@@ -196,7 +196,7 @@ float MyFilters::getMagnitudeResponse(float frequency) const
             break;
         case AudioFilter::filterTypeList::bqBandPass:
             //  s2 +2(1 k/2)+1
-            magnitude = (sValue*sValue) / ( (sValue*sValue) + 2 * (1 - cutOff / 2) * sValue+1);
+            magnitude = sValue*(sValue+1) / ( (sValue*sValue) + 2 * (1 - cutOff / 2)*sValue +1);
             break;
         default:
             break;
