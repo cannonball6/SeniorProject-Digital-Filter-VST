@@ -34,21 +34,21 @@ public:
     virtual ~MyFilters();
     
     // Must be called before playback starts to set sample rate etc.
-    void initializeFilter(float initSampRate, float initMinFrequency, float initMaxFrequency) override;
+    void initializeFilter(double initSampRate, double initMinFrequency, double initMaxFrequency) override;
     
-    void setCutoff(float cutoff) override;
-    void setQFactor(float newQ)override;
+    void setCutoff(double cutoff) override;
+    void setQFactor(double newQ)override;
     //Overriding base class filter response functions for VA One Pole response
     
-    float designLowPass(float input, int channel);
-    float designHighPass(float input, int channel);
-    float designBiquad(float input);
-    float designBiquadHighPass();
-    float designBiquadBandPass(float input);
+    double designLowPass(double input, int channel);
+    double designHighPass(double input, int channel);
+    double designBiquad(double input);
+    double designBiquadHighPass();
+    double designBiquadBandPass(double input);
     
     void calcCoeff(void);
-    float getMagnitudeResponse(float freq) const  override;
-    float processFilter(float input, int channel) override;
+    double getMagnitudeResponse(double freq) const  override;
+    double processFilter(double input, int channel) override;
     //reset state holders
     void Reset();
     
@@ -56,16 +56,21 @@ private:
     // z1 delay element/state holder (performing analgue integration equivalent)
     // set as a stereo option for now
     // stereo input between filter and plugin processor code but this is nice and simple.
-    float z1 [2];
-    float z2 [2];
+    double z1 [2];
+    double z2 [2];
+    
+    double s1, s2, s3 = 0.0;
+    
     //coefficient variable
-    float a0,a1,a2,b0,b1,b2;
+    double a0,a1,a2,b0,b1,b2;
     // Big G value for bilinear cutoff/pre-warping
-    float G = 0.0;
-    float Q = .1;
+    double G = 0.0;
+    double Q = .707;
     // remember last parameters so we know when to recalculate them
-    float lastCutoff;
-    float biquadCutoff;
+    double lastCutoff = 0.0;
+    double biquadCutoff;
+    
+    JUCE_LEAK_DETECTOR (MyFilters);
 };
 
 

@@ -17,7 +17,7 @@ CannonFilterAudioProcessor::CannonFilterAudioProcessor() : filter1(new MyFilters
 {
     /* The lambda is capturing a value copy of the this pointer to the audio processor. The processor will be destroyed after the parameter object so
      this is safe.*/
-    auto cutoffParamCallback = [this] (float newCutoff){this->filter1->setCutoff(newCutoff);};
+    auto cutoffParamCallback = [this] (double newCutoff){this->filter1->setCutoff(newCutoff);};
     filterCutoffParam = new CustomAudioParameter("FilterCutoff", "FilterCutoff", false, cutoffParamCallback);
     //This param represents a filters cutoff frequency so appending Hz string to label for display purposes.
     filterCutoffParam->setLabel("Hz");
@@ -28,10 +28,10 @@ CannonFilterAudioProcessor::CannonFilterAudioProcessor() : filter1(new MyFilters
      */
     filterCutoffParam->setNormalisableRange(defaultMinFilterFrequency, defaultMaxFilterFrequency);
    
-    auto gainParamCallback = [this] (float gain) {this->filter1->setGain(gain);};
+    auto gainParamCallback = [this] (double gain) {this->filter1->setGain(gain);};
     filterGainParam = new CustomAudioParameter("FilterGain", "FilterGain", true, gainParamCallback);
 
-    auto qParamCallback = [this] (float newQFactor) {this->filter1->setQFactor(newQFactor);};
+    auto qParamCallback = [this] (double newQFactor) {this->filter1->setQFactor(newQFactor);};
     filterQParam = new CustomAudioParameter("FilterQ", "FilterQ", true, qParamCallback);
     
     addParameter(filterCutoffParam);
@@ -119,8 +119,8 @@ void CannonFilterAudioProcessor::releaseResources()
 
 void CannonFilterAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
-    float numSamples = buffer.getNumSamples();
-    float currentSampleRate = getSampleRate();
+    double numSamples = buffer.getNumSamples();
+    double currentSampleRate = getSampleRate();
     
     //Handles filter being added onto an already playing audio track where some hosts will not call prepare to play method.
     if (filter1->getSampleRate() != currentSampleRate)
@@ -143,12 +143,10 @@ void CannonFilterAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBu
         const float* input = buffer.getReadPointer(channel);
         float* output = buffer.getWritePointer (channel);
         
-        
-            for (int i = 0; i < numSamples; i++)
-            {
-                output[i] = filter1->processFilter(input[i], channel);
-            
-            }
+        for (int i = 0; i < numSamples; i++)
+        {
+            output[i] = filter1->processFilter(input[i], channel);
+        }
     }
 }
 

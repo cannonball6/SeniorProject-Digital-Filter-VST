@@ -7,6 +7,11 @@
 
   ==============================================================================
 */
+#if JUCE_INTEL
+#define JUCE_SNAP_TO_ZERO(n)    if (! (n < -1.0e-8f || n > 1.0e-8f)) n = 0;
+#else
+#define JUCE_SNAP_TO_ZERO(n)
+#endif
 
 #include "MyFilters.h"
 
@@ -19,12 +24,11 @@ MyFilters::~MyFilters()
 }
 
 //Set variables and flush state registers in initialization function. Must be called before playback starts
-void MyFilters::initializeFilter(float initSampleRate, float initMinFrequency, float initMaxFrequency)
+void MyFilters::initializeFilter(double initSampleRate, double initMinFrequency, double initMaxFrequency)
 {
     this->sampleRate = initSampleRate;
     this->minFrequency = initMinFrequency;
     this->maxFrequency = initMaxFrequency;
-    //this->qFactor = .7071;
     //clear the delay elements/state holders
     z1[0] = 0.0;
     z1[1] = 0.0;
@@ -33,42 +37,42 @@ void MyFilters::initializeFilter(float initSampleRate, float initMinFrequency, f
 }
 
 
-void MyFilters::setCutoff(float newCutoff)
+void MyFilters::setCutoff(double newCutoff)
 {
     this->cutoffFrequency = newCutoff;
     biquadCutoff = newCutoff / this->sampleRate;
     
     //Cutoff prewarping, billinear transform filters
-    float wd = 2 * M_PI * this->cutoffFrequency;
-    float T = 1/this->sampleRate;
+    double wd = 2 * M_PI * this->cutoffFrequency;
+    double T = 1/this->sampleRate;
     
     // Desired analogue frequency / these are virtual analogue filters so this is the cutoff / frequency response we require for our filter algorithm
-    float wa = (2/T) * tan(wd*T/2); //analog frequency response function
-    float g = wa * T/2; //output gain, cutoff
+    double wa = (2/T) * tan(wd*T/2); //analog frequency response function
+    double g = wa * T/2; //output gain, cutoff
     G = g/(1.0 + g); //freq response
 }
 
-void MyFilters::setQFactor(float newQ)
+void MyFilters::setQFactor(double newQ)
 {
     this->qFactor = newQ;
 }
 
 void MyFilters::calcCoeff(){
-    float norm;
-   // float V = pow(10, fabs(this->filterGain) / 20.0);
-    float K = tan(M_PI * biquadCutoff);
+    double norm;
+   // double V = pow(10, fabs(this->filterGain) / 20.0);
+    double K = tan(M_PI * biquadCutoff);
 
     switch (this->filterType) {
         case AudioFilter::filterTypeList::bqLowPass:
-            norm = 1 / (1 + K / this->qFactor + K * K);
+            norm = 1 / (1 + K / getQFactor() + K * K);
             a0 = K * K * norm;
             a1 = 2 * a0;
             a2 = a0;
             b1 = 2 * (K * K - 1) * norm;
-            b2 = (1 - K / this->qFactor + K * K) * norm;
+            b2 = (1 - K / getQFactor()+ K * K) * norm;
             break;
         case AudioFilter::filterTypeList::bqHighPass:
-            norm = 1 / (1 + K / this->qFactor + K * K);
+            norm = 1 / (1 + K / getQFactor() + K * K);
             a0 = 1 * norm;
             a1 = -2 * a0;
             a2 = a0;
@@ -89,53 +93,70 @@ void MyFilters::calcCoeff(){
     return;
 }
 
-float MyFilters::designLowPass(float input, int channel)
+double MyFilters::designLowPass(double input, int channel)
 {
-    float v = (input - z1[channel]) * G;
-    float lowpassOutput = v + z1[channel];
+    double v = (input - z1[channel]) * G;
+    double lowpassOutput = v + z1[channel];
     
     z1[channel] = lowpassOutput + v;
     
     return lowpassOutput;
 }
-float MyFilters::designHighPass(float input, int channel)
+double MyFilters::designHighPass(double input, int channel)
 {
-    float v = (input - z1[channel]) * G;
-    float lowpassOutput = v + z1[channel];
+    double v = (input - z1[channel]) * G;
+    double lowpassOutput = v + z1[channel];
     
     z1[channel] = lowpassOutput + v;
     
-    float highpassOutput = input - lowpassOutput;
+    double highpassOutput = input - lowpassOutput;
     
     return highpassOutput;
 }
 
-float MyFilters::designBiquad(float input){
-    float cutoff = AudioFilter::getCutoff();
-    float nyq = 2.0 / AudioFilter::getSampleRate();
+double MyFilters::designBiquad(double input){
+    double cutoff = AudioFilter::getCutoff();
+    double nyq = 2.0 / AudioFilter::getSampleRate();
     
-    //float cutoff = this->cutoffFrequency / this->sampleRate;
+    //double cutoff = this->cutoffFrequency / this->sampleRate;
      cutoff = (cutoff < this->minFrequency) ? this->minFrequency*nyq : cutoff*nyq;
     if(cutoff> 0.99) { cutoff = 0.99; }
     // parameter update check
     if(cutoff != lastCutoff){
         calcCoeff();
+        b0 = b0*this->filterGain;
+        b1 = b1*this->filterGain;
+        b2 = b2*this->filterGain;
         lastCutoff = cutoff;
     }
+
+//third way
     
-    float outputSignal = a0 * input + a1 * z1[0] + a2 * z1[1] - b1 * z2[0] - b2 * z2[1];
+//second way
+//    double out = 0.0;
+//    //Update States First
+//    s3 = s2;
+//    s2 = s1;
+//    if ((a1 && a2 <= 2) && (b0 && b1 && b2 <= 2))
+//    {
+//        s1 = (input/this->filterGain) - a1*s2 - a2*s3;  //compute feedback
+//    
+//        out = this->filterGain*(b0*s1 + b1*s2 + b2*s3); //compute feedforward
+//    }
+//original way
+//    double outputSignal = a0 * input + a1 * z1[0] + a2 * z1[1] - b1 * z2[0] - b2 * z2[1];
+//    
+//    z1[1] = z1[0];
+//    z1[0] = input;
+//    z2[1] = z2[0];
+//    z2[0] = outputSignal; 
     
-    z1[1] = z1[0];
-    z1[0] = input;
-    z2[1] = z2[0];
-    z2[0] = outputSignal; 
-    
-    return outputSignal;
+    return out;
 }
 
-float MyFilters::processFilter(float input, int channel)
+double MyFilters::processFilter(double input, int channel)
 {
-    float output = 0.0;
+    double output = 0.0;
 
     switch (this->filterType) {
         case AudioFilter::filterTypeList::LowPass:
@@ -145,7 +166,7 @@ float MyFilters::processFilter(float input, int channel)
             output = this->filterGain * designHighPass(input, channel);
             break;
         case AudioFilter::filterTypeList::bqLowPass:
-            output = this->filterGain * designBiquad(input);
+            output = designBiquad(input);
             break;
         case AudioFilter::filterTypeList::bqHighPass:
             output = this->filterGain * designBiquad(input);
@@ -159,19 +180,19 @@ float MyFilters::processFilter(float input, int channel)
     return output;
 }
 
-float MyFilters::getMagnitudeResponse(float frequency) const
+double MyFilters::getMagnitudeResponse(double frequency) const
 {
-    float magnitude = 0.0;
-    float T = 1/this->sampleRate;
+    double magnitude = 0.0;
+    double T = 1/this->sampleRate;
     
-    float wdCutoff = 2 * M_PI * this->cutoffFrequency;
+    double wdCutoff = 2 * M_PI * this->cutoffFrequency;
     
     //Calculating pre-warped/analogue cutoff frequency to use in virtual analogue frequeny response calculations
-    float cutOff = (2/T) * tan(wdCutoff*T/2);
+    double cutOff = (2/T) * tan(wdCutoff*T/2);
     
     //Digital frequency to evaluate
-    float wdEval =  2 * M_PI * frequency;
-    float sValue =  (2/T) * tan(wdEval*T/2);
+    double wdEval =  2 * M_PI * frequency;
+    double sValue =  (2/T) * tan(wdEval*T/2);
     
     
     /* This is the digital transfer function which is equal to the analogue transfer function
@@ -208,3 +229,6 @@ float MyFilters::getMagnitudeResponse(float frequency) const
     magnitude = Decibels::gainToDecibels(magnitude);
     return  magnitude;
 }
+
+
+#undef JUCE_SNAP_TO_ZERO

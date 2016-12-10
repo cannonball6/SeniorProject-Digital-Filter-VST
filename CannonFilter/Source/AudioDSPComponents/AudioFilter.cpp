@@ -8,6 +8,7 @@
   ==============================================================================
 */
 
+
 #include "AudioFilter.h"
 
 AudioFilter::AudioFilter()
@@ -20,33 +21,33 @@ AudioFilter::~AudioFilter()
 
 }
 
-void AudioFilter::setCutoff(float newCutoffFrequency)
+void AudioFilter::setCutoff(double newCutoffFrequency)
 {
     cutoffFrequency = newCutoffFrequency;
 }
 
 
-float AudioFilter::getCutoff() const
+double AudioFilter::getCutoff() const
 {
     return cutoffFrequency;
 }
 
-void AudioFilter::setGain(float newGain)
+void AudioFilter::setGain(double newGain)
 {
     filterGain = newGain;
 }
 
-float AudioFilter::getGain() const
+double AudioFilter::getGain() const
 {
     return filterGain;
 }
 
-void AudioFilter::setQFactor(float newQFactor)
+void AudioFilter::setQFactor(double newQFactor)
 {
     qFactor = newQFactor;
 }
 
-float AudioFilter::getQFactor() const
+double AudioFilter::getQFactor() const
 {
     return qFactor;
 }
@@ -62,12 +63,13 @@ int AudioFilter::getFilterType() const
 }
 
 //Default filter response implementations
-float AudioFilter::getMagnitudeResponse(float freq) const
+double AudioFilter::getMagnitudeResponse(double freq) const
 {
     return 0.0;
 }
 
-float AudioFilter::getPhaseResponse(float freq) const
+double AudioFilter::getPhaseResponse(double freq) const
 {
     return 0.0;
 }
+

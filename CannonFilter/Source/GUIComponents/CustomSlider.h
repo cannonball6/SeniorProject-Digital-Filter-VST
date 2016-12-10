@@ -30,3 +30,18 @@ private:
 
 
 #endif  
+
+
+/* void NDSLookAndFeel::drawRotarySlider (Graphics &g, int x, int y, int width, int height, float sliderPosProportional, const float rotaryStartAngle, const float rotaryEndAngle, Slider &slider)
+ {
+ AffineTransform rotator;
+ if (!slider.isMouseOverOrDragging())
+ {
+ g.drawImage (knobNormal, x,y,width,height,0,0,width,height,false);
+ }
+ else
+ {
+ g.drawImage (knobOver, x,y,width,height,0,0,width,height,false);
+ }
+ g.drawImageTransformed (knobMask, x, y, width, height, rotator.rotated ((float)sliderPosProportional*rotaryEndAngle, (float)(knobMask->getWidth()/2), (float)(knobMask->getHeight()/2)), false);
+ }-*/

@@ -16,42 +16,42 @@ public:
     virtual ~AudioFilter();
     
     //Filters deriving from this class must implement their process method
-    virtual float processFilter (float input, int channel) = 0;
+    virtual double processFilter (double input, int channel) = 0;
     
     /* 
         Filters deriving from this class must implement their own initialization code - i.e for flushing storage registers/state holders etc.
         Must be called before playback starts to set sample rate etc. 
      */
-    virtual void initializeFilter (float initSampleRate, float initMinFrequency, float initMaxFrequency) = 0;
+    virtual void initializeFilter (double initSampleRate, double initMinFrequency, double initMaxFrequency) = 0;
     
-    inline void setSampleRate (float newSampRate) {sampleRate = newSampRate;}
-    inline float getSampleRate() const {return sampleRate;}
+    inline void setSampleRate (double newSampRate) {sampleRate = newSampRate;}
+    inline double getSampleRate() const {return sampleRate;}
     
-    inline void setMinFrequency (float newMinFrequency) {minFrequency = newMinFrequency;}
-    inline float getMinFrequency() const {return minFrequency;}
+    inline void setMinFrequency (double newMinFrequency) {minFrequency = newMinFrequency;}
+    inline double getMinFrequency() const {return minFrequency;}
     
-    inline void setMaxFrequency (float newMaxFrequency) {maxFrequency = newMaxFrequency;}
-    inline float getMaxFrequency() const {return maxFrequency;}
+    inline void setMaxFrequency (double newMaxFrequency) {maxFrequency = newMaxFrequency;}
+    inline double getMaxFrequency() const {return maxFrequency;}
     
    
     /* 
         Parameter set and get methods made virtual to facilitate use in different types of filters - i.e virtual analogue filters where
         cutoff frequencies may need to be pre-warped etc.
      */
-    virtual void setCutoff (float newCutoff);
-    virtual float getCutoff() const;
-    virtual void setQFactor (float newQFactor);
-    virtual float getQFactor() const;
-    virtual void setGain (float newGain);
-    virtual float getGain() const;
+    virtual void setCutoff (double newCutoff);
+    virtual double getCutoff() const;
+    virtual void setQFactor (double newQFactor);
+    virtual double getQFactor() const;
+    virtual void setGain (double newGain);
+    virtual double getGain() const;
     
     /* 
         Filter response functions that can be overriden in baseclass to return the filters magnitude and phase response.
         These can be used to provide frequency response for displays and GUI components etc. Default implementations just return 0.0.
         These functions do not HAVE to be implemented - the filter object will run fine without them.
     */
-    virtual float getMagnitudeResponse(float freq) const;
-    virtual float getPhaseResponse(float freq) const;
+    virtual double getMagnitudeResponse(double freq) const;
+    virtual double getPhaseResponse(double freq) const;
     
     void setFilterType (int newFilterType);
     int getFilterType() const;
@@ -68,13 +68,13 @@ public:
     
 protected:
     
-    float sampleRate = 0.0;
-    float minFrequency = 0.0;
-    float maxFrequency = 0.0;
+    double sampleRate = 0.0;
+    double minFrequency = 0.0;
+    double maxFrequency = 0.0;
     
-    float cutoffFrequency = 0.0;
-    float filterGain = 1.0;
-    float qFactor = 0.0;
+    double cutoffFrequency = 0.0;
+    double filterGain = 1.0;
+    double qFactor = 0.1;
     
     int filterType = 0;
 };

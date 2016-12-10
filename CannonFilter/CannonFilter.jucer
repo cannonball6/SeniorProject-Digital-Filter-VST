@@ -8,7 +8,7 @@
               pluginChannelConfigs="{2, 2}" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="CannonFilterAU" pluginRTASCategory="" aaxIdentifier="com.yourcompany.CannonFilter"
-              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.2.4"
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.3.0"
               companyName="DasGood">
   <MAINGROUP id="nx2L7o" name="CannonFilter">
     <GROUP id="{C92DDBCB-CA52-231F-F308-6CCD951385CA}" name="Source">

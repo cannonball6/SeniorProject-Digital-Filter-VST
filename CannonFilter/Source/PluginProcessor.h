@@ -12,8 +12,6 @@
 #define PLUGINPROCESSOR_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "AudioDSPComponents/VAOnePoleFilter.h"
-#include "AudioDSPComponents/BiquadFilter.h"
 #include "AudioDSPComponents/MyFilters.h"
 #include "Parameters/CustomAudioParameter.h"
 #include <string>
@@ -80,9 +78,9 @@ private:
     //CustomAudioParameter* filterGainParam;
     
     //Default setup values for filter etc.
-    const float defaultSampleRate = 44100.00;
-    const float defaultMinFilterFrequency = 20.00;
-    const float defaultMaxFilterFrequency = 20000.00;
+    const double defaultSampleRate = 44100.00;
+    const double defaultMinFilterFrequency = 20.00;
+    const double defaultMaxFilterFrequency = 20000.00;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CannonFilterAudioProcessor)
